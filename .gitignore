@@ -1,3 +1,13 @@
 obj/streamRedirectionDemo.csproj.nuget.g.targets
 obj/project.assets.json
 obj/streamRedirectionDemo.csproj.nuget.g.props
+obj/Debug/netcoreapp1.1/streamRedirectionDemo.pdb
+bin/Debug/netcoreapp1.1/streamRedirectionDemo.deps.json
+bin/Debug/netcoreapp1.1/streamRedirectionDemo.dll
+bin/Debug/netcoreapp1.1/streamRedirectionDemo.pdb
+bin/Debug/netcoreapp1.1/streamRedirectionDemo.runtimeconfig.dev.json
+bin/Debug/netcoreapp1.1/streamRedirectionDemo.runtimeconfig.json
+obj/Debug/netcoreapp1.1/CoreCompileInputs.cache
+obj/Debug/netcoreapp1.1/streamRedirectionDemo.AssemblyInfo.cs
+obj/Debug/netcoreapp1.1/streamRedirectionDemo.csproj.FileListAbsolute.txt
+obj/Debug/netcoreapp1.1/streamRedirectionDemo.dll
