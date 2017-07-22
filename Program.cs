@@ -36,7 +36,7 @@ namespace streamRedirectionDemo
             using(StreamWriter sw = new StreamWriter(__stream))
             {
                 Console.SetOut(sw); // redirect
-                Console.WriteLine(""); // write-in , common interface
+                Console.WriteLine(DateTime.Now.ToString()); // write-in , common interface
             }
         }
 
