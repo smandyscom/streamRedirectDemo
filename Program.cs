@@ -15,12 +15,12 @@ namespace streamRedirectionDemo
         {
             ThreadPool.QueueUserWorkItem(activateSimulationServer);// simulation/test use only
 
-            multiwayOulet mo = new multiwayOulet();
-            mo.Way = multiwayOulet.interfaceSelection.FILE;
+            outputSwitch mo = new outputSwitch();
+            mo.Route = outputSwitch.routeSelections.FILE;
             mo.Write("Output to Filestream");
-            mo.Way = multiwayOulet.interfaceSelection.TCP;
+            mo.Route = outputSwitch.routeSelections.TCP;
             mo.Write("Output to Remote TCP Server");
-            mo.Way = multiwayOulet.interfaceSelection.PIPE;
+            mo.Route = outputSwitch.routeSelections.PIPE;
             mo.Write("Output to PIPE for other process");
 
        }
@@ -43,16 +43,16 @@ namespace streamRedirectionDemo
         }
     }//program
 
-    class multiwayOulet
+    class outputSwitch
     {
-        public enum interfaceSelection
+        public enum routeSelections
         {
             PIPE,
             TCP,
             FILE,
         }
 
-        public interfaceSelection Way
+        public routeSelections Route
         {
             set
             {
@@ -61,14 +61,14 @@ namespace streamRedirectionDemo
         }
         private StreamWriter currentOutputWay = null;
 
-        private Dictionary<interfaceSelection,StreamWriter> cachedInterfaces = new Dictionary<interfaceSelection, StreamWriter>();
+        private Dictionary<routeSelections,StreamWriter> cachedInterfaces = new Dictionary<routeSelections, StreamWriter>();
         public void Write(String message)
         {
             Console.SetOut(currentOutputWay); // redirect
             Console.WriteLine(message); // write-in , common interface
         }
 
-        public multiwayOulet()
+        public outputSwitch()
         {
            TcpClient __client  = new TcpClient(AddressFamily.InterNetwork);
            NamedPipeClientStream __npcs = new NamedPipeClientStream(".","test");
@@ -80,9 +80,9 @@ namespace streamRedirectionDemo
             while (!__task.IsCompleted);
 
             //preparing corresponding stream writers
-            cachedInterfaces[interfaceSelection.TCP] = new StreamWriter(__client.GetStream());
-            cachedInterfaces[interfaceSelection.PIPE] = new StreamWriter(__npcs);
-            cachedInterfaces[interfaceSelection.FILE] = new StreamWriter(__fs);
+            cachedInterfaces[routeSelections.TCP] = new StreamWriter(__client.GetStream());
+            cachedInterfaces[routeSelections.PIPE] = new StreamWriter(__npcs);
+            cachedInterfaces[routeSelections.FILE] = new StreamWriter(__fs);
 
         }
     }
